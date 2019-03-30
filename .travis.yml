@@ -3,3 +3,9 @@ jdk: oraclejdk8
 
 before_install:
   - chmod +x mvnw
+  
+deploy:
+  provider: heroku
+  api_key:
+    secure: "2bb9b526-4355-4d2b-ac48-40918274437e"
+  app: recipe
