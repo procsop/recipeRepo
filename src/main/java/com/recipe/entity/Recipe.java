@@ -42,8 +42,59 @@ public class Recipe {
 	)
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
     
-//will be
-//continued
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Consumption> consumptions;
+
+    /**
+     * Constructor, essential getters and setters.
+     */
+    public Recipe() {
+    }
+    
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(Set<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+    public Set<Consumption> getConsumptions() {
+        return this.consumptions;
+    }
+
+    public void setConsumptions(Set<Consumption> consumptions) {
+        this.consumptions = consumptions;
+    }
+    
+	public void addIngredients(Ingredient ingredient) {
+		this.ingredients.add(ingredient);
+	}
+
     @Override
     public String toString() {
         return "{" +
