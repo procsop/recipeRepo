@@ -3,8 +3,14 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.recipe.entity.User;
 
+/**
+ * UserRepository interface.
+ */
 public interface UserRepository extends CrudRepository<User, Long> {
-
-	User findByEmail(String email);
-	
+	/**
+	 * Find user by email.
+	 * @param email
+	 * @return
+	 */
+	User findByEmail(String email);	
 }

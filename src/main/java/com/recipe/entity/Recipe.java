@@ -51,6 +51,9 @@ public class Recipe {
     public Recipe() {
     }
     
+    /**
+     * Potentially setters and getters.
+     */
     public Long getId() {
         return this.id;
     }
@@ -95,6 +98,9 @@ public class Recipe {
 		this.ingredients.add(ingredient);
 	}
 
+    /**
+     * Get recipe as string with ID concatenated name and desc.
+     */
     @Override
     public String toString() {
         return "{" +

@@ -14,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * User class provides full featured users (sic!) :)
+ */
 @Entity
 @Table( name="users" )
 public class User {
@@ -39,6 +42,9 @@ public class User {
 	
 	public User() {}
 
+	/**
+	 * The most important setters and getters.
+	 */
 	public Long getId() {
 		return id;
 	}
@@ -84,6 +90,9 @@ public class User {
 		this.roles.add(new Role(roleName));
 	}
 
+	/**
+	 * Get user as string concatenated id,email,pwd.
+	 */
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + "]";

@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- * Role class controls the set of users.
+ * Role class controls the set of users by roles.
  */
 @Entity
 @Table( name = "roles" )
@@ -31,6 +31,9 @@ public class Role {
 		this.role=role;
 	}
 
+	/**
+	 * Potentially setters and getters.
+	 */
 	public Long getId() {
 		return id;
 	}
@@ -55,6 +58,9 @@ public class Role {
 		this.users = users;
 	}
 
+	/**
+	 * Get class as string included id and role.
+	 */
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", role=" + role + "]";

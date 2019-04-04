@@ -108,6 +108,9 @@ public class Ingredient {
 //        this.users = users;
 //    }
 
+    /**
+     * Get ID and NAME as string.
+     */
     @Override
     public String toString() {
         return "{" +
