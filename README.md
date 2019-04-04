@@ -54,4 +54,4 @@ Konvenció legyen, hogy branchek merge-elését, továbbá egyéb commit&push-t�
 
 6.) Az app F5-el indul, ctrl+F5-tel zárul a fejlesztői környezetben. Megnézni böngészőben a localhost:8080 -on lehet (ha configoláskor mást nem állítottunk be). 
 
-Pro
+Proba 2
