@@ -1,4 +1,4 @@
-P.E. Tervezet:
+P.E. elképzelés:
 
 Recept/életmód témával foglakozó webes alkalmazást készítünk, melynek a lényege, hogy a felhasználók kiválaszthatják, melyik receptet készítik el az adott napon, majd megfelelő mennyiségű adat begyűjtése után képes lesz a szoftver ajánlani recepteket a felhasználónak, attól függően, hogy a korábbi választásai alapján valószínűleg milyen tápanyagokra/ásványi anyagokra/vitaminokra lenne leginkább szüksége. (az ajánlott napi/heti bevitelhez képest).
  
