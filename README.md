@@ -22,7 +22,7 @@ A fejlesztés jelenlegi követelményei (fenntartva a módosítás jogát):
 0.) előzetes követelmények 
 
 
-git 2.17 install
+git 2.21 install
 java jdk telepítése (8u202)
 java jre telepítése (8u202)
 PATH-ba jdk bin mappájára mutatni.
