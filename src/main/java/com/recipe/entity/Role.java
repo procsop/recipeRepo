@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * Role class controls the set of users.
+ */
 @Entity
 @Table( name = "roles" )
 public class Role {

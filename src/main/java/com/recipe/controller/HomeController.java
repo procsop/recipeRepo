@@ -1,6 +1,12 @@
 package com.recipe.controller;
 
+import java.text.ParseException;
+
+import com.recipe.entity.Ingredient;
+import com.recipe.entity.Recipe;
 import com.recipe.entity.User;
+import com.recipe.service.IngredientService;
+import com.recipe.service.RecipeService;
 import com.recipe.service.UserDetailsImpl;
 import com.recipe.service.UserService;
 
@@ -13,13 +19,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * HomeController class will control all of requests for user, home, recipes, registration...
+ */
 @Controller
 public class HomeController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private UserService userService;
+	private RecipeService recipeService;
+	private IngredientService ingredientService;
 
 	@Autowired
 	public void setUserService(UserService userService) {
