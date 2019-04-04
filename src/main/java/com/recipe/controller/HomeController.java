@@ -38,6 +38,16 @@ public class HomeController {
 		this.userService = userService;
 	}
 
+	@Autowired
+	public void setRecipeService(RecipeService recipeService) {
+		this.recipeService = recipeService;
+	}
+
+	@Autowired
+	public void setIngredientService(IngredientService ingredientService) {
+		this.ingredientService = ingredientService;
+	}
+
 	@RequestMapping("/")
 	public String home() {
 		return "index";
@@ -66,5 +76,63 @@ public class HomeController {
 		userService.registerUser(user);
         return "auth/login";
 	}
-	
+	@RequestMapping("/recipes")
+	public String recipes(Model model) {
+		model.addAttribute("recipes", recipeService.getRecipes());
+		// model.addAttribute("ingredients", recipeService.getIngredients());
+		return "recipes";
+	}
+
+	@RequestMapping("/recommend")
+	public String recommendRecipe(Model model) throws NumberFormatException, ParseException {
+		model.addAttribute("recommendRecipe", userService.recommendRecipe());
+		String ezStringBazdmeg = userService.recommendRecipe().getName();
+		log.debug(ezStringBazdmeg);
+		//model.addAttribute("ingredients", recipeService.getIngredients());
+		return "recommend";
+	}
+
+	@RequestMapping("/ingredients")
+	public String ingredients(Model model) {
+		model.addAttribute("ingredients", ingredientService.getIngredients());
+		return "ingredients";
+	}
+
+	@RequestMapping("/admin/addingredient")
+	public String addIngredient(Model model){
+		model.addAttribute("ingredient", new Ingredient());
+		return "addingredient";
+	}
+
+	@PostMapping("/addingredient")
+	public String addIngredient(@ModelAttribute Ingredient ingredient) {
+		log.info("Uj hozzávaló!");
+		log.debug(ingredient.getName());
+		ingredientService.addIngredient(ingredient);
+		return "ingredients";
+	}
+
+	@RequestMapping("/admin/addrecipe")
+	public String addRecipe(Model model){
+		model.addAttribute("recipe", new Recipe());
+		return "addrecipe";
+	}
+
+	@PostMapping("/addrecipe")
+	public String addRecipe(@ModelAttribute Recipe recipe) {
+		log.info("Uj recept!");
+		log.debug(recipe.getName());
+		log.debug(recipe.getDescription());
+		log.debug(recipe.getIngredients().toString());
+		recipeService.addRecipe(recipe);
+		return "recipes";
+	}
+	@PostMapping("/addconsumption")
+	public String addconsumption(@RequestParam("id") Long selectedRecipeId) {
+		Recipe selectedRecipe = recipeService.getRecipeById(selectedRecipeId);
+		log.info("Fogyasztás rögzítve!");
+		log.debug(selectedRecipe.getName());
+		userService.addConsumption(selectedRecipe);
+		return "recipes";
+	}
 }

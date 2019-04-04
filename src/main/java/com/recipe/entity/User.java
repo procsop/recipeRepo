@@ -3,16 +3,7 @@ package com.recipe.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * User class provides full featured users (sic!) :)
@@ -39,7 +30,8 @@ public class User {
 		inverseJoinColumns = {@JoinColumn(name="role_id")}  
 	)
 	private Set<Role> roles = new HashSet<Role>();
-	
+	@OneToMany( mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+	private Set<Consumption> consumptions = new HashSet<>();
 	public User() {}
 
 	/**
@@ -82,6 +74,12 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+	public Set<Consumption> getConsumptions() {
+		return consumptions;
+	}
+	public void setConsumptions(Set<Consumption> consumptions) {
+		this.consumptions = consumptions;
 	}
 
 	public void addRoles(String roleName) {
