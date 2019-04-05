@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu"	layout:decorator="layouts/main">
+<head>
+	<title>Recipe4u - Hozzávalók</title>
+</head>
+<body>
+
+	<div layout:fragment="loginContent">
+
+		<article th:each="ingredient : ${ingredients}">
+			<header>
+                <h1 th:text="${ingredient.name}">Ez itt a hozzávaló neve</h1>
+            </header>
+                <h5 th:text="${ingredient.protein}">Fehérje</h5>
+                <h5 th:text="${ingredient.fat}">Zsír</h5>
+                <h5 th:text="${ingredient.carbohydrate}">Szénhidrát</h5>
+                <h5 th:text="${ingredient.mangesium}">Magnézium</h5>
+                <h5 th:text="${ingredient.calcium}">Kálcium</h5>
+                <h5 th:text="${ingredient.iron}">Vas</h5>
+			<hr/>
+		</article>
+	</div>
+
+
+</body>
+</html>
