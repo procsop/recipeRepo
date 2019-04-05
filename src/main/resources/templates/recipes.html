@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu"	layout:decorator="layouts/main">
+<head>
+	<title>Recipe4u - Receptek</title>
+</head>
+<body>
+
+	<div layout:fragment="loginContent">
+			<article th:each="recipe : ${recipes}">
+				<header>
+					<h1 th:text="${recipe.name}">Ez itt a recept neve</h1>
+					<p th:text="${recipe.description}">Ez itt a recept leírása</p>
+				</header>
+				<article th:each="ingredient : ${recipe.ingredients}">
+					<b th:text="${ingredient.name}"></b> <br/>
+					Fehérje: <b th:text="${ingredient.protein}"> </b> <br/>
+					Zsír: <b th:text="${ingredient.fat}"></b> <br/>
+					Szénhidrát: <b th:text="${ingredient.carbohydrate}"></b> <br/>
+					Magnézium: <b th:text="${ingredient.magnesium}"></b> <br/>
+					Kálcium: <b th:text="${ingredient.calcium}"></b> <br/>
+					Vas: <b th:text="${ingredient.iron}"></b> <br/>
+				</article>
+				<form name="addconsumption" th:action="@{/addconsumption}" method="post">
+					<input type="hidden" id="id" name="id" th:value="${recipe.id}" />
+					<button type="submit">Ezt választom!</button>
+				</form>
+				<hr/>
+			</article>
+	</div>
+
+
+</body>
+</html>
