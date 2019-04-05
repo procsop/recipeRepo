@@ -10,14 +10,12 @@ import org.springframework.data.repository.CrudRepository;
 public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 	List<Recipe> findAll();
 
-	//List<Ingredient> findIngredientByRecipeId(Long id);
     /**
      * Fint recipe by id.
      * @param selectedRecipeId
      * @return
      */
 	Recipe findById(Long selectedRecipeId);
-	//Ingredient findByIngredientsIngredient(String string);
 
     /**
      * Get Recipes ordered by contained fat.

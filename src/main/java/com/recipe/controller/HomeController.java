@@ -86,8 +86,6 @@ public class HomeController {
 	@RequestMapping("/recommend")
 	public String recommendRecipe(Model model) throws NumberFormatException, ParseException {
 		model.addAttribute("recommendRecipe", userService.recommendRecipe());
-		String ezStringBazdmeg = userService.recommendRecipe().getName();
-		log.debug(ezStringBazdmeg);
 		//model.addAttribute("ingredients", recipeService.getIngredients());
 		return "recommend";
 	}

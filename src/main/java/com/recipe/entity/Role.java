@@ -9,9 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Role class controls the set of users by roles.
  */
+@Getter
+@Setter
 @Entity
 @Table( name = "roles" )
 public class Role {
@@ -24,38 +30,10 @@ public class Role {
 	
 	@ManyToMany( mappedBy = "roles")
 	private Set<User> users = new HashSet<User>();
-	
-	private Role(){} 
-	
+		
+	public Role(){}
 	public Role(String role){
 		this.role=role;
-	}
-
-	/**
-	 * Potentially setters and getters.
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
 	}
 
 	/**

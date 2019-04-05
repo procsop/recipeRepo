@@ -15,9 +15,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * This class is used to manage recipes.
  */
+
+@Getter
+@Setter
 @Entity
 @Table( name="recipes" )
 public class Recipe {
@@ -44,59 +51,6 @@ public class Recipe {
     
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Consumption> consumptions;
-
-    /**
-     * Constructor, essential getters and setters.
-     */
-    public Recipe() {
-    }
-    
-    /**
-     * Potentially setters and getters.
-     */
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Ingredient> getIngredients() {
-		return ingredients;
-	}
-
-	public void setIngredients(Set<Ingredient> ingredients) {
-		this.ingredients = ingredients;
-	}
-
-    public Set<Consumption> getConsumptions() {
-        return this.consumptions;
-    }
-
-    public void setConsumptions(Set<Consumption> consumptions) {
-        this.consumptions = consumptions;
-    }
-    
-	public void addIngredients(Ingredient ingredient) {
-		this.ingredients.add(ingredient);
-	}
 
     /**
      * Get recipe as string with ID concatenated name and desc.

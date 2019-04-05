@@ -5,9 +5,15 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * User class provides full featured users (sic!) :)
  */
+@Getter
+@Setter
 @Entity
 @Table( name="users" )
 public class User {
@@ -32,55 +38,6 @@ public class User {
 	private Set<Role> roles = new HashSet<Role>();
 	@OneToMany( mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
 	private Set<Consumption> consumptions = new HashSet<>();
-	public User() {}
-
-	/**
-	 * The most important setters and getters.
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFullName() {
-		return fullName;
-	}
-
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-	public Set<Consumption> getConsumptions() {
-		return consumptions;
-	}
-	public void setConsumptions(Set<Consumption> consumptions) {
-		this.consumptions = consumptions;
-	}
 
 	public void addRoles(String roleName) {
 		if (this.roles == null || this.roles.isEmpty()) 
