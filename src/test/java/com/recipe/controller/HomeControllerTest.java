@@ -18,6 +18,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import java.util.Random;
+import java.util.logging.Logger;
 
 /**
  * Testclass for HomeController.
@@ -25,6 +26,7 @@ import java.util.Random;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class HomeControllerTest {
+    private static Logger LOGGER = Logger.getLogger("InfoLogging");
 
     private MockMvc mockMvc;
 
@@ -40,11 +42,11 @@ public class HomeControllerTest {
 
     /**
      * Test redirecting to index.
-     * TODO: FAILED.
      * @throws Exception
      */
     @Test
     public void rootShouldRedirectToIndex() throws Exception {
+        //LOGGER.info("/n LOGOLOK  \n  \r"+view().getClass());
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
