@@ -26,8 +26,8 @@ import java.util.logging.Logger;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class HomeControllerTest {
-    private static Logger LOGGER = Logger.getLogger("InfoLogging");
 
+    private static Logger LOGGER = Logger.getLogger("InfoLogging");
     private MockMvc mockMvc;
 
     @Autowired
@@ -46,7 +46,6 @@ public class HomeControllerTest {
      */
     @Test
     public void rootShouldRedirectToIndex() throws Exception {
-        //LOGGER.info("/n LOGOLOK  \n  \r"+view().getClass());
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
@@ -66,11 +65,10 @@ public class HomeControllerTest {
         
         TestingAuthenticationToken testingAuthenticationToken = new TestingAuthenticationToken(user,null);
         SecurityContextHolder.getContext().setAuthentication(testingAuthenticationToken);
-
+        
         mockMvc.perform(get("/login")
                 .principal(testingAuthenticationToken))
                 .andExpect(status().isOk());
-                //.andExpect(model().attribute("user", is(user.getEmail())));
     }
 
     /**
