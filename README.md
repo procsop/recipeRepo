@@ -30,13 +30,12 @@ PATH-ba jdk bin mappájára mutatni.
 1.) vscode insider telepítése, configolása.
 
 
-2.) szükséges extensions: spring boot extension pack, Spring Initializr , java extension pack, (opc.: angular és maven for java.)
+2.) szükséges extensions: spring boot extension pack, Spring Initializr , java extension pack, (opc.: angular és maven for java.) , gitlens, lombok.
 
 
 3.) selected dependencies (a módosítás jogát fenntartva, későbbi kiegészítéssel):
 - WEB, + kell Tomcat vagy apache alá
-- Jersey, REST elosztó
-- talán kellene postgreSQL is, de ezt utólag eldöntjük
+- postgreSQL
 - gitLens
 
 
