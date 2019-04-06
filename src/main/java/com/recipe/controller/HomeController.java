@@ -76,6 +76,7 @@ public class HomeController {
 		userService.registerUser(user);
         return "auth/login";
 	}
+
 	@RequestMapping("/recipes")
 	public String recipes(Model model) {
 		model.addAttribute("recipes", recipeService.getRecipes());
