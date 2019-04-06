@@ -69,26 +69,45 @@ public class ServicesTest {
      */
     @Test
     public void roleTester(){
-       Role r = new Role("USER"); r.setId(2L);
+        Role r = new Role("USER"); r.setId(2L);
         assertThat(r.toString().equals("Role [id="+2L+", role=USER]")).isEqualTo(true);
     }
 
     /**
      * 1.) Test: adding a new recipe using recipeservice .
-     * 2.) Test: get back the added recipe by id
-     * 3.) Test: get all recipes back, and this size should be 1.
+     * 2.) Test: get all recipes back, and this size should be 1.
      */
     @Test
     public void recipeTester(){
-        //TODO:
+        Recipe r = new Recipe(); r.setName("porkolt"); r.setId(3L); r.setDescription("csirkeporkolt");
+        int meret=recipeService.getRecipes().size();
+        assertThat(recipeService.addRecipe(r)).isEqualTo("ok"); // 1.) 
+        
+        List<Recipe> l=recipeService.getRecipes();  // 2.) 
+        assertThat(l.size()).isEqualTo(meret+1);  //increased size by adding new recipe
     }
 
     /**
-     * Test adding ingredient and get.
+     * Test ingredient-service by adding an ingredient and ask for get it back.
      */
     @Test
     public void ingredientTester(){
-        //TODO:
+        Ingredient i = new Ingredient();
+        i.setName("szója"); i.setCalcium("277mg"); i.setCarbohydrate("30g"); i.setFat("0");
+        i.setId(4L); i.setIron("16mg"); i.setMagnesium("280mg"); i.setProtein("36g");
+
+        String ok = ingredientService.addIngredient(i);
+        assertThat(ok).isEqualTo("ok");
+
+        List<Ingredient> il = ingredientService.getIngredients();
+        boolean isSavedAndCanBeFound=false;
+        for(Ingredient t:il){
+            if(t.getName().equals("szója")){
+                isSavedAndCanBeFound=true;
+            }
+        }
+
+        assertThat(isSavedAndCanBeFound).isEqualTo(true);
     }
 
 }
