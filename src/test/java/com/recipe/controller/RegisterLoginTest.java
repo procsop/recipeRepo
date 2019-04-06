@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * This test should check registration, logging in, logging out.
+ * This test should check registration and logging.
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration
