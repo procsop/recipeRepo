@@ -18,7 +18,6 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import java.util.Random;
-import java.util.logging.Logger;
 
 /**
  * Testclass for HomeController.
@@ -27,7 +26,6 @@ import java.util.logging.Logger;
 @SpringBootTest
 public class HomeControllerTest {
 
-    private static Logger LOGGER = Logger.getLogger("InfoLogging");
     private MockMvc mockMvc;
 
     @Autowired

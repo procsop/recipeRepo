@@ -64,7 +64,7 @@ public class HomeController {
 	@RequestMapping("/registration")
 	public String registration(Model model){
 		model.addAttribute("user", new User());
-		return "registration";
+		return "registration"; //redirect:registration doesn't work so in test redirection need to be null.
 	}
 	
 	@PostMapping("/reg")
