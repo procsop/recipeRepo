@@ -5,8 +5,9 @@ before_install:
   - chmod +x mvnw
   
 deploy:
-  provider: heroku
-  api_key:
-    secure: 6a02b45c-de3f-4f6b-9fa4-fb9685294712
+  provider: releases
+  api_key: bfee34f23042472cf87d493a7c15282521bdd869
+  file: artifacts/
   skip_cleanup: true
-  app: herokups
+  on:
+    tags: true

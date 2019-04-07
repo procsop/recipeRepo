@@ -1,6 +1,11 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
+### Visual Studio Code ###
+settings.json
+.vscode/
+
+
 ### STS ###
 .apt_generated
 .classpath
