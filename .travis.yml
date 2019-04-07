@@ -4,10 +4,14 @@ jdk: oraclejdk8
 before_install:
   - chmod +x mvnw
   
+before_deploy:
+  - export JAR_FILE=$(ls */target/*.jar)
+  
 deploy:
   provider: releases
   api_key: bfee34f23042472cf87d493a7c15282521bdd869
-  file: artifacts/
+  file: "*/target/*.jar"
   skip_cleanup: true
+  file_glob: true
   on:
     tags: true
