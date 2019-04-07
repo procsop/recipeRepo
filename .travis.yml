@@ -13,7 +13,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key: 
-    secure: bfee34f23042472cf87d493a7c15282521bdd869
+    secure: bfee34f23042472cf87d493a7c15282521bdd863
   file: "target/*.jar"
   skip_cleanup: true
   file_glob: true
