@@ -10,6 +10,10 @@ before_deploy:
   - git config --local user.email lcz.peti@gmail.com
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
+  - export GIT_TAG=$TRAVIS_BRANCH-v0.1.$TRAVIS_BUILD_NUMBER
+  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+  - git push -q https://bfee34f23042472cf87d493a7c15282521bdd869@github.com/procsop/recipeRepo --tags
+
 
 deploy:
   provider: releases
