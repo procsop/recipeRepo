@@ -3,10 +3,11 @@ jdk: oraclejdk8
 
 before_install:
   - chmod +x mvnw
-  
+
 deploy:
-  provider: heroku
-  api_key:
-    secure: 6a02b45c-de3f-4f6b-9fa4-fb9685294712
+  provider: releases
+  api_key: adfcf77b165c3a4ea84249d09aed22dd7a1ee8c1
+  file: artifacts/
   skip_cleanup: true
-  app: herokups
+  on:
+    tags: true
