@@ -13,13 +13,12 @@ before_deploy:
   - git tag $TRAVIS_TAG
   - export GIT_TAG=$TRAVIS_BRANCH-v0.1.$TRAVIS_BUILD_NUMBER
   - git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
-  - git push -q https://bfee34f23042472cf87d493a7c15282521bdd869@github.com/procsop/recipeRepo --tags
 
 
 deploy:
   provider: releases
   tag_name: $TRAVIS_TAG
-  target_commitish: $TRAVIS_COMMIT
+  target_commitish: "Travis deploy"
   name: $TRAVIS_TAG
   api_key: bfee34f23042472cf87d493a7c15282521bdd869
   file: "*/target/*.jar"
@@ -27,6 +26,6 @@ deploy:
   file_glob: true
   overwrite: true
   on:
-    branch: master
+    all_branches: true
     repo: procsop/recipeRepo
     tags: true
