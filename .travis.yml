@@ -6,27 +6,22 @@ before_install:
   
 before_deploy:
   - export TRAVIS_TAG=True
-  - export JAR_FILE=$(ls */target/*.jar)
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - echo "$TRAVIS_TAG" "$TRAVIS_COMMIT"
   - git config --local user.name peterlacza
   - git config --local user.email lcz.peti@gmail.com
-  - git tag $TRAVIS_TAG
   - export GIT_TAG=$TRAVIS_BRANCH-v0.1.$TRAVIS_BUILD_NUMBER
   - git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
 
 
 deploy:
   provider: releases
-  tag_name: $TRAVIS_TAG
-  target_commitish: "Travis deploy"
-  name: $TRAVIS_TAG
-  api_key: bfee34f23042472cf87d493a7c15282521bdd869
-  file: "*/target/*.jar"
+  api_key: 
+    secure: bfee34f23042472cf87d493a7c15282521bdd869
+  file: "target/*.jar"
   skip_cleanup: true
   file_glob: true
   overwrite: true
   on:
-    all_branches: true
-    repo: procsop/recipeRepo
     tags: true
+    all_branches: true
