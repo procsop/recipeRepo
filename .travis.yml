@@ -5,6 +5,7 @@ before_install:
   - chmod +x mvnw
   
 before_deploy:
+  - export TRAVIS_TAG=True
   - export JAR_FILE=$(ls */target/*.jar)
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - echo "$TRAVIS_TAG" "$TRAVIS_COMMIT"
