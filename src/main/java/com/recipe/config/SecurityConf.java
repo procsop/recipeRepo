@@ -9,6 +9,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+/**
+ * This class is security config class.
+ */
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
 public class SecurityConf extends WebSecurityConfigurerAdapter {
@@ -27,7 +30,9 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userService);
 	}
 
-	
+	/**
+	 * Configured for requests and redirections.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http

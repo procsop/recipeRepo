@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorator="layouts/main">
+<head>
+<title>Recipe4u - Admin page</title>
+</head>
+<body>
+
+	<div layout:fragment="loginContent">
+
+		<form name="addrecipe" th:action="@{/addrecipe}" th:object="${recipe}" method="post" class="form-signin">
+			<h2 class="form-signin-heading">Recept megadása</h2>
+				<input type="text" id="name" name="name" th:field="*{name}" class="form-control" placeholder="Recept név"  />
+				<input type="text" id="description" name="description" th:field="*{description}" class="form-control" placeholder="Recept leírása"  />
+				<table>
+					<tr th:each="ingredient, itemStat : *{ingredients}">
+						<td><input id="ingredients" name="ingredients" th:field="*{ingredients[__${itemStat.index}__]}" />Első hozzávaló</td>
+						<td><input id="ingredients" name="ingredients" th:field="*{ingredients[__${itemStat.index}__]}" />Második hozzávaló</td>
+					</tr>
+				</table>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Recept felvitele</button>
+		</form>
+
+	</div>
+
+</body>
+</html>

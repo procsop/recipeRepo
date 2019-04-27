@@ -5,7 +5,6 @@ target/
 settings.json
 .vscode/
 
-
 ### STS ###
 .apt_generated
 .classpath
@@ -13,6 +12,7 @@ settings.json
 .project
 .settings
 .springBeans
+.DS_Store
 
 ### IntelliJ IDEA ###
 .idea
@@ -27,3 +27,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+.vscode/

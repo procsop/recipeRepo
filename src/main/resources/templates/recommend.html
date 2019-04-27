@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu"	layout:decorator="layouts/main">
+<head>
+	<title>Recipe4u - Javasolt recept</title>
+</head>
+<body>
+
+	<div layout:fragment="loginContent">
+
+        <h1>Javasolt recept</h1>
+        <article>
+				<header>
+					<h1 th:text="${recommendRecipe.name}">Ez itt a recept neve</h1>
+					<p th:text="${recommendRecipe.description}">Ez itt a recept leírása</p>
+                </header>
+
+				<article th:each="ingredient : ${recommendRecipe.ingredients}">
+					<b th:text="${ingredient.name}"></b> <br/>
+					Fehérje: <b th:text="${ingredient.protein}"> </b> <br/>
+					Zsír: <b th:text="${ingredient.fat}"></b> <br/>
+					Szénhidrát: <b th:text="${ingredient.carbohydrate}"></b> <br/>
+					Magnézium: <b th:text="${ingredient.magnesium}"></b> <br/>
+					Kálcium: <b th:text="${ingredient.calcium}"></b> <br/>
+					Vas: <b th:text="${ingredient.iron}"></b> <br/>
+				</article>
+
+				<hr/>
+			</article>
+	</div>
+
+
+</body>
+</html>

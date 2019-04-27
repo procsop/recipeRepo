@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorator="layouts/main">
+<head>
+<title>Recipe4u - Admin page</title>
+</head>
+<body>
+
+	<div layout:fragment="loginContent">
+
+		<form name="addingredient" th:action="@{/addingredient}" th:object="${ingredient}" method="post" class="form-signin">
+			<h2 class="form-signin-heading">Hozzávaló megadása</h2>
+				<input type="text" id="name" name="name" th:field="*{name}" class="form-control" placeholder="Hozzávaló neve"  />
+                <input type="text" id="protein" name="protein" th:field="*{protein}" class="form-control" placeholder="Fehérje"  />
+				<input type="text" id="fat" name="fat" th:field="*{fat}" class="form-control" placeholder="Zsír"  />
+				<input type="text" id="carbohydrate" name="carbohydrate" th:field="*{carbohydrate}" class="form-control" placeholder="Szénhidrát"  />
+				<input type="text" id="magnesium" name="magnesium" th:field="*{magnesium}" class="form-control" placeholder="Magnézium"  />
+                <input type="text" id="calcium" name="calcium" th:field="*{calcium}" class="form-control" placeholder="Kálcium"  />
+                <input type="text" id="iron" name="iron" th:field="*{iron}" class="form-control" placeholder="Vas"  />
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Hozzávaló felvitele</button>
+		</form>
+
+	</div>
+
+</body>
+</html>

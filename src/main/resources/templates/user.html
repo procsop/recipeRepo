@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="hu"	layout:decorator="layouts/main">
+<head>
+	<title>Recipe4u - Korábbi fogyasztás</title>
+</head>
+<body>
+
+	<div layout:fragment="loginContent">
+		<article th:each="actUser : ${user}">
+			<header>
+                <h1 th:text="${actUser.fullName}">Ez itt a recept neve</h1>
+			</header>
+			<article th:each="consumption : ${actUser.consumptions}">
+				<p th:text="${consumption.recipe.name}">De jó lenne, ha megjelennének a hozzávalók :) </p>
+			</article>
+
+			<hr/>
+		</article>
+	</div>
+</body>
+</html>
