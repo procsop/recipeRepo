@@ -109,19 +109,17 @@
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>3.12.0</version>
 				<configuration>
-					<failurePriority>5</failurePriority>
-					<failOnViolation>false</failOnViolation>
+					<failOnViolation>true</failOnViolation>
+					<failurePriority>3</failurePriority>
 				</configuration>
 				<executions>
 				<execution>
 					<goals>
-						<goal>check</goal>
+						<goal>cpd-check</goal>
 					</goals>
 				</execution>
 				</executions>
      		</plugin>
 		</plugins>
 	</build>
-
-
 </project>
