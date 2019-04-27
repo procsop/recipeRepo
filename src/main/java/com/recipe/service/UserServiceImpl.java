@@ -3,11 +3,7 @@ package com.recipe.service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
@@ -22,7 +18,6 @@ import com.recipe.repo.RecipeRepository;
 import com.recipe.repo.RoleRepository;
 import com.recipe.repo.UserRepository;
 
-import com.recipe.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +29,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
-
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private UserRepository userRepository;
 	private RoleRepository roleRepository;
