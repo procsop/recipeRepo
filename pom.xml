@@ -89,6 +89,20 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
             </plugin>
+        </plugins>
+    </reporting>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				    <configuration>
+                        <systemPropertyVariables>
+                            <spring.config.name>recipe</spring.config.name>
+                        </systemPropertyVariables>
+                    </configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
@@ -104,23 +118,7 @@
 					</goals>
 				</execution>
 				</executions>
-     		 </plugin>
-
-        </plugins>
-    </reporting>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				    <configuration>
-                        <systemPropertyVariables>
-                            <spring.config.name>recipe</spring.config.name>
-                        </systemPropertyVariables>
-                    </configuration>
-
-			</plugin>
+     		</plugin>
 		</plugins>
 	</build>
 
