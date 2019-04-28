@@ -31,14 +31,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private UserRepository userRepository;
 	private RoleRepository roleRepository;
 	private RecipeRepository recipeRepository;
-
+	
 	private final int PREV_DAYS = 3;
 	private final int PROT_RATE = 120;
 	private final int FAT_RATE = 80;
 	private final String USER_ROLE = "USER";
-	
+
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, RecipeRepository recipeRepository) {
+	public UserServiceImpl(UserRepository userRepository,
+							RoleRepository roleRepository,
+							RecipeRepository recipeRepository) {
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
 		this.recipeRepository = recipeRepository;
