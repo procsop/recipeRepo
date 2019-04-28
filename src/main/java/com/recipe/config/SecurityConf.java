@@ -15,18 +15,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
 public class SecurityConf extends WebSecurityConfigurerAdapter {
-	
-
 	@Bean
-	public UserDetailsService userDetailsService() {
+	public final UserDetailsService userDetailsService() {
 	    return super.userDetailsService();
 	}
-	
+
 	@Autowired
 	private UserDetailsService userService;
-	
+
 	@Autowired
-	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
+	public final void configureAuth(final AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userService);
 	}
 
@@ -34,7 +32,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 	 * Configured for requests and redirections.
 	 */
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	protected final void configure(final HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
 				//.antMatchers("/admin/**").hasRole("ADMIN")
@@ -51,6 +49,5 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 			.logout()
 				.logoutSuccessUrl("/login?logout")
 				.permitAll();
-	}	
-	
+	}
 }
