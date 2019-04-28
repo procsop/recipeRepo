@@ -35,9 +35,9 @@ public class Consumption {
 
     public Consumption(){
     }
-    public Consumption(User user, Recipe recipe, Date date){
-        this.user=user;
-        this.recipe=recipe;
-        this.date=date;
+    public Consumption(User user, Recipe recipe, Date date) {
+        this.user = user;
+        this.recipe = recipe;
+        this.date = date;
     }
 }
