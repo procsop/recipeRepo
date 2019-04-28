@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
+	
 	private UserService userService;
 	private RecipeService recipeService;
 	private IngredientService ingredientService;
