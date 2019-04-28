@@ -34,17 +34,17 @@ public class HomeController {
 	private IngredientService ingredientService;
 
 	@Autowired
-	public void setUserService(UserService userService) {
+	public void setUserService(final UserService userService) {
 		this.userService = userService;
 	}
 
 	@Autowired
-	public void setRecipeService(RecipeService recipeService) {
+	public void setRecipeService(final RecipeService recipeService) {
 		this.recipeService = recipeService;
 	}
 
 	@Autowired
-	public void setIngredientService(IngredientService ingredientService) {
+	public void setIngredientService(final IngredientService ingredientService) {
 		this.ingredientService = ingredientService;
 	}
 
@@ -62,13 +62,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("/registration")
-	public String registration(Model model){
+	public String registration(Model model) {
 		model.addAttribute("user", new User());
 		return "registration"; //redirect:registration doesn't work so in test redirection need to be null.
 	}
 	
 	@PostMapping("/reg")
-    public String reg(@ModelAttribute User user) {
+    public String reg(@ModelAttribute final User user) {
 		log.info("Uj user!");
 		log.debug(user.getFullName());
 		log.debug(user.getEmail());
@@ -98,13 +98,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("/admin/addingredient")
-	public String addIngredient(Model model){
+	public String addIngredient(Model model) {
 		model.addAttribute("ingredient", new Ingredient());
 		return "addingredient";
 	}
 
 	@PostMapping("/addingredient")
-	public String addIngredient(@ModelAttribute Ingredient ingredient) {
+	public String addIngredient(@ModelAttribute final Ingredient ingredient) {
 		log.info("Uj hozzávaló!");
 		log.debug(ingredient.getName());
 		ingredientService.addIngredient(ingredient);
@@ -112,13 +112,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("/admin/addrecipe")
-	public String addRecipe(Model model){
+	public String addRecipe(Model model) {
 		model.addAttribute("recipe", new Recipe());
 		return "addrecipe";
 	}
 
 	@PostMapping("/addrecipe")
-	public String addRecipe(@ModelAttribute Recipe recipe) {
+	public String addRecipe(@ModelAttribute final Recipe recipe) {
 		log.info("Uj recept!");
 		log.debug(recipe.getName());
 		log.debug(recipe.getDescription());
@@ -126,8 +126,9 @@ public class HomeController {
 		recipeService.addRecipe(recipe);
 		return "recipes";
 	}
+
 	@PostMapping("/addconsumption")
-	public String addconsumption(@RequestParam("id") Long selectedRecipeId) {
+	public String addconsumption(@RequestParam("id") final Long selectedRecipeId) {
 		Recipe selectedRecipe = recipeService.getRecipeById(selectedRecipeId);
 		log.info("Fogyasztás rögzítve!");
 		log.debug(selectedRecipe.getName());
