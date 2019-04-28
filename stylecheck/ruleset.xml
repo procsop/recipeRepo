@@ -96,7 +96,9 @@
         <module name="ConstantName"/>
         <module name="LocalFinalVariableName"/>
         <module name="LocalVariableName"/>
-        <module name="MemberName"/>
+        <module name="MemberName">
+			<property name="severity" value="ignore"/>
+		</module>
         <module name="MethodName"/>
         <module name="PackageName"/>
         <module name="ParameterName"/>
