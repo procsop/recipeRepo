@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Ingredient class is about the meals containing how much minerals.
@@ -15,15 +16,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@ToString
 @Entity
-@Table( name="ingredients" )
+@Table(name = "ingredients")
 public class Ingredient {
 
-	@Id @GeneratedValue
-	private Long id;
-	
-	@Column( nullable=false )
-	private String name;
+    @Id @GeneratedValue
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
 
     private String protein;
     private String fat;
@@ -31,16 +33,4 @@ public class Ingredient {
     private String magnesium;
     private String calcium;
     private String iron;
-
-    /**
-     * Get ID and NAME as string.
-     */
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            "}";
-    }
-	
 }
