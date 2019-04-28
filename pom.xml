@@ -156,7 +156,7 @@
 					<id>validate</id>
 					<phase>validate</phase>
 					<configuration>
-						<configLocation>stylecheck\ruleset.xml</configLocation>
+						<configLocation>stylecheck/ruleset.xml</configLocation>
 						<encoding>UTF-8</encoding>
 						<consoleOutput>true</consoleOutput>
 						<failsOnError>true</failsOnError>
