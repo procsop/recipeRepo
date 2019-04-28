@@ -44,7 +44,7 @@ public class HomeController {
 	}
 
 	@Autowired
-	public void setIngredientService(IngredientService ingredientService){
+	public void setIngredientService(IngredientService ingredientService) {
 		this.ingredientService = ingredientService;
 	}
 
