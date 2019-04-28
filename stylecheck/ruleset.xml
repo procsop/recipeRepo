@@ -43,8 +43,10 @@
 
     <!-- Checks that a package-info.java file exists for each package.     -->
     <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocPackage -->
-    <module name="JavadocPackage"/>
-
+    <module name="JavadocPackage">
+        <property name="severity" value="ignore"/>
+	</module>
+	
     <!-- Checks whether files end with a new line.                        -->
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
     <module name="NewlineAtEndOfFile"/>
@@ -59,15 +61,14 @@
 
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-    <module name="FileTabCharacter"/>
-
+    <module name="FileTabCharacter">
+        <property name="severity" value="ignore"/>
+	</module>
+	
     <!-- Miscellaneous other checks.                   -->
     <!-- See http://checkstyle.sf.net/config_misc.html -->
     <module name="RegexpSingleline">
-       <property name="format" value="\s+$"/>
-       <property name="minimum" value="0"/>
-       <property name="maximum" value="0"/>
-       <property name="message" value="Line has trailing spaces."/>
+		<property name="severity" value="ignore"/>
     </module>
 
     <!-- Checks for Headers                                -->
@@ -142,7 +143,9 @@
         <module name="AvoidNestedBlocks"/>
         <module name="EmptyBlock"/>
         <module name="LeftCurly"/>
-        <module name="NeedBraces"/>
+        <module name="NeedBraces">
+			<property name="severity" value="ignore"/>			
+		</module>
         <module name="RightCurly"/>
 
         <!-- Checks for common coding problems               -->
@@ -166,7 +169,9 @@
 			<property name="severity" value="ignore"/>			
 		</module>
         <module name="FinalClass"/>
-        <module name="HideUtilityClassConstructor"/>
+        <module name="HideUtilityClassConstructor">
+			<property name="severity" value="ignore"/>			
+		</module>
         <module name="InterfaceIsType"/>
         <module name="VisibilityModifier"/>
 
