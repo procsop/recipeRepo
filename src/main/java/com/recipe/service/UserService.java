@@ -9,7 +9,7 @@ public interface UserService {
 	
 	String registerUser(User user);
 
-	User findByEmail(String email);
+	public User findByEmail(String email);
 	Recipe recommendRecipe() throws NumberFormatException, ParseException;
 	String addConsumption(Recipe selectedRecipe);
 }
