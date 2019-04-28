@@ -11,14 +11,16 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Role class controls the set of users by roles.
  */
 @Getter
 @Setter
+@ToString
 @Entity
-@Table( name = "roles" )
+@Table(name = "roles")
 public class Role {
 
 	@Id
@@ -27,20 +29,11 @@ public class Role {
 	
 	private String role;
 	
-	@ManyToMany( mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles")
 	private Set<User> users = new HashSet<User>();
 		
 	public Role(){}
 	public Role(String role){
 		this.role=role;
 	}
-
-	/**
-	 * Get class as string included id and role.
-	 */
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", role=" + role + "]";
-	}
-	
 }
