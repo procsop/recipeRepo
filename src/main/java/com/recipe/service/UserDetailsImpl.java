@@ -16,8 +16,6 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public class UserDetailsImpl implements UserDetails {
 
-	//private static final long serialVersionUID = 3185970362329652822L;
-
 	private User user;
 
 	public UserDetailsImpl(User user) {
@@ -90,5 +88,4 @@ public class UserDetailsImpl implements UserDetails {
 	public User getUser() {
 		return this.user;
 	}
-
 }

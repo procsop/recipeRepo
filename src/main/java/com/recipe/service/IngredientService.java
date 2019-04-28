@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Ingredient service class to improve get and add functions.
  */
 @Service
-public class IngredientService{
+public class IngredientService {
 	
 	private IngredientRepository ingredientRepository;
 
@@ -36,5 +36,4 @@ public class IngredientService{
 	public List<Ingredient> getIngredients() {
 		return ingredientRepository.findAll();
 	}
-
 }

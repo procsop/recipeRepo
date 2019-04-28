@@ -18,8 +18,6 @@ import com.recipe.repo.RecipeRepository;
 import com.recipe.repo.RoleRepository;
 import com.recipe.repo.UserRepository;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,7 +47,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}
-
 		return new UserDetailsImpl(user);
 	}
 
@@ -122,14 +119,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return getRecommendRecipe(worstNutrition);
 	}
 
-	public Recipe getRecommendRecipe(String worstNutrition){
+	public Recipe getRecommendRecipe(String worstNutrition) {
 		List<Recipe> recipes = null;
 		switch (worstNutrition) {
 			case "fatRate":  recipes = recipeRepository.findAllByOrderByIngredientsFatDesc(); break;
 			case "proteinRate":  recipes = recipeRepository.findAllByOrderByIngredientsProteinDesc(); break;
 		}
 		Recipe recommendedRecipe = recipes.get(0);
-		//System.out.println(recommendedRecipe.getName());
 		return recommendedRecipe;
 	}
 
@@ -142,5 +138,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 		return diff;
 	}
-
 }
