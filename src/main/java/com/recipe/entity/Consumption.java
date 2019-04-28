@@ -33,7 +33,7 @@ public class Consumption {
 
     private Date date;
 
-    public Consumption(){
+    public Consumption() {
     }
     public Consumption(User user, Recipe recipe, Date date) {
         this.user = user;

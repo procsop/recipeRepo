@@ -32,8 +32,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private RoleRepository roleRepository;
 	private RecipeRepository recipeRepository;
 
+	private final int PREV_DAYS = 3;
+	private final int PROT_RATE = 120;
+	private final int FAT_RATE = 80;
 	private final String USER_ROLE = "USER";
-
+	
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, RecipeRepository recipeRepository) {
 		this.userRepository = userRepository;
@@ -59,8 +62,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public String registerUser(User userToRegister) {
 		User userCheck = userRepository.findByEmail(userToRegister.getEmail());
 
-		if (userCheck != null)
+		if (userCheck != null) {
 			return "alreadyExists";
+		}
 
 		Role userRole = roleRepository.findByRole(USER_ROLE);
 		if (userRole != null) {
@@ -88,24 +92,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	@Override
 	public Recipe recommendRecipe() throws NumberFormatException, ParseException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User actualUser = ((UserDetailsImpl)principal).getUser();
+		User actualUser = ((UserDetailsImpl) principal).getUser();
 
-		int sumProtein=0;
-		int sumFat=0;
+		int sumProtein = 0;
+		int sumFat = 0;
 
 		Set<Consumption> consumptions = actualUser.getConsumptions();
-		for(Consumption consumption : consumptions){
-			if(getDateDiff(consumption) <= 3){
+		for (Consumption consumption : consumptions) {
+			if (getDateDiff(consumption) <= PREV_DAYS) {
 				Set<Ingredient> ingredients = consumption.getRecipe().getIngredients();
-				for(Ingredient ingredient : ingredients){
+				for (Ingredient ingredient : ingredients) {
 					sumProtein += Integer.parseInt(ingredient.getProtein());
 					sumFat += Integer.parseInt(ingredient.getFat());
 				}
 			}
 		}
 
-		double proteinRate = sumProtein / 3 / 120;
-		double fatRate = sumFat / 3 / 80;
+		double proteinRate = sumProtein / PREV_DAYS / PROT_RATE;
+		double fatRate = sumFat / PREV_DAYS / FAT_RATE;
 
 		TreeMap<String, Double> nutriRates = new TreeMap<String, Double>();
 		nutriRates.put("proteinRate", proteinRate);
@@ -124,6 +128,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		switch (worstNutrition) {
 			case "fatRate":  recipes = recipeRepository.findAllByOrderByIngredientsFatDesc(); break;
 			case "proteinRate":  recipes = recipeRepository.findAllByOrderByIngredientsProteinDesc(); break;
+			default: break;
 		}
 		Recipe recommendedRecipe = recipes.get(0);
 		return recommendedRecipe;

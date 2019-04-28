@@ -56,7 +56,7 @@ public class HomeController {
 	@RequestMapping("/user")
 	public String user(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetailsImpl userObj = (UserDetailsImpl)principal;
+		UserDetailsImpl userObj = (UserDetailsImpl) principal;
 		model.addAttribute("user", userObj.getUser());
 		return "user";
 	}

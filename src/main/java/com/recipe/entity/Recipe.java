@@ -42,11 +42,11 @@ public class Recipe {
     /**
      * SQL part of database-work.
      */
-    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
 		name = "recipe_ingredients",
-		joinColumns = {@JoinColumn(name="recipe_id")},
-		inverseJoinColumns = {@JoinColumn(name="ingredient_id")}
+		joinColumns = {@JoinColumn(name = "recipe_id")},
+		inverseJoinColumns = {@JoinColumn(name = "ingredient_id")}
 	)
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
     
