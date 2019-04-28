@@ -11,14 +11,12 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
  * Role class controls the set of users by roles.
  */
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -35,5 +33,10 @@ public class Role {
 	public Role() { } 
 	public Role(String role) {
 		this.role = role;
+	}
+	
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", role=" + role + "]";
 	}
 }

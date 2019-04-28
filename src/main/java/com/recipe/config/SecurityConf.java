@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 public class SecurityConf extends WebSecurityConfigurerAdapter {
 	@Bean
-	public final UserDetailsService userDetailsService() {
+	public UserDetailsService userDetailsService() {
 	    return super.userDetailsService();
 	}
 
@@ -24,7 +24,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userService;
 
 	@Autowired
-	public final void configureAuth(final AuthenticationManagerBuilder auth) throws Exception {
+	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userService);
 	}
 
@@ -32,7 +32,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 	 * Configured for requests and redirections.
 	 */
 	@Override
-	protected final void configure(final HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
 				//.antMatchers("/admin/**").hasRole("ADMIN")

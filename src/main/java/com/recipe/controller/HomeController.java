@@ -27,24 +27,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	private UserService userService;
 	private RecipeService recipeService;
 	private IngredientService ingredientService;
 
 	@Autowired
-	public void setUserService(final UserService userService) {
+	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
 
 	@Autowired
-	public void setRecipeService(final RecipeService recipeService) {
+	public void setRecipeService(RecipeService recipeService) {
 		this.recipeService = recipeService;
 	}
 
 	@Autowired
-	public void setIngredientService(final IngredientService ingredientService) {
+	public void setIngredientService(IngredientService ingredientService) {
 		this.ingredientService = ingredientService;
 	}
 
@@ -68,7 +68,7 @@ public class HomeController {
 	}
 	
 	@PostMapping("/reg")
-    public String reg(@ModelAttribute final User user) {
+    public String reg(@ModelAttribute User user) {
 		log.info("Uj user!");
 		log.debug(user.getFullName());
 		log.debug(user.getEmail());
@@ -104,7 +104,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/addingredient")
-	public String addIngredient(@ModelAttribute final Ingredient ingredient) {
+	public String addIngredient(@ModelAttribute Ingredient ingredient) {
 		log.info("Uj hozzávaló!");
 		log.debug(ingredient.getName());
 		ingredientService.addIngredient(ingredient);
@@ -118,7 +118,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/addrecipe")
-	public String addRecipe(@ModelAttribute final Recipe recipe) {
+	public String addRecipe(@ModelAttribute Recipe recipe) {
 		log.info("Uj recept!");
 		log.debug(recipe.getName());
 		log.debug(recipe.getDescription());
@@ -128,7 +128,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/addconsumption")
-	public String addconsumption(@RequestParam("id") final Long selectedRecipeId) {
+	public String addconsumption(@RequestParam("id") Long selectedRecipeId) {
 		Recipe selectedRecipe = recipeService.getRecipeById(selectedRecipeId);
 		log.info("Fogyasztás rögzítve!");
 		log.debug(selectedRecipe.getName());
