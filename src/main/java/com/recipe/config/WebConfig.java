@@ -10,14 +10,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
-
 	/**
-	 * Add ViewController to registry.
-	 */
+		* Add ViewController to registry.
+	*/
 	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
+	public final void addViewControllers(final ViewControllerRegistry registry) {
 		super.addViewControllers(registry);
         registry.addViewController("/login").setViewName("auth/login");
-        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);		
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	}
 }
