@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private RecipeRepository recipeRepository;
 	
 	private final int PREV_DAYS = 3;
-	private final int PROT_RATE = 120;
-	private final int FAT_RATE = 80;
+	private final int RECOMMEND_PROT = 120;
+	private final int RECOMMEND_FAT = 80;
 	private final String USER_ROLE = "USER";
 
 	@Autowired
@@ -110,8 +110,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			}
 		}
 
-		double proteinRate = sumProtein / PREV_DAYS / PROT_RATE;
-		double fatRate = sumFat / PREV_DAYS / FAT_RATE;
+		double proteinRate = sumProtein / PREV_DAYS / RECOMMEND_PROT;
+		double fatRate = sumFat / PREV_DAYS / RECOMMEND_FAT;
 
 		TreeMap<String, Double> nutriRates = new TreeMap<String, Double>();
 		nutriRates.put("proteinRate", proteinRate);
