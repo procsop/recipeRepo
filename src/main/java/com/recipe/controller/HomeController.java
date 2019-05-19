@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	private UserService userService;
 	private RecipeService recipeService;
 	private IngredientService ingredientService;
@@ -56,13 +56,13 @@ public class HomeController {
 	@RequestMapping("/user")
 	public String user(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetailsImpl userObj = ((UserDetailsImpl) principal);
+		UserDetailsImpl userObj = (UserDetailsImpl) principal;
 		model.addAttribute("user", userObj.getUser());
 		return "user";
 	}
 
 	@RequestMapping("/registration")
-	public String registration(Model model){
+	public String registration(Model model) {
 		model.addAttribute("user", new User());
 		return "registration"; //redirect:registration doesn't work so in test redirection need to be null.
 	}
@@ -98,7 +98,7 @@ public class HomeController {
 	}
 
 	@RequestMapping("/admin/addingredient")
-	public String addIngredient(Model model){
+	public String addIngredient(Model model) {
 		model.addAttribute("ingredient", new Ingredient());
 		return "addingredient";
 	}
@@ -112,7 +112,7 @@ public class HomeController {
 	}
 
 	@RequestMapping("/admin/addrecipe")
-	public String addRecipe(Model model){
+	public String addRecipe(Model model) {
 		model.addAttribute("recipe", new Recipe());
 		return "addrecipe";
 	}
@@ -126,6 +126,7 @@ public class HomeController {
 		recipeService.addRecipe(recipe);
 		return "recipes";
 	}
+
 	@PostMapping("/addconsumption")
 	public String addconsumption(@RequestParam("id") Long selectedRecipeId) {
 		Recipe selectedRecipe = recipeService.getRecipeById(selectedRecipeId);

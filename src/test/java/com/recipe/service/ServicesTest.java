@@ -30,13 +30,13 @@ public class ServicesTest {
 
     /**
      * This test checks that if one e-mail is registered then no more can be that.
-     */
+     
     @Test
     public void findUserByEmailShouldReturnOneUser(){
         User user = userService.findByEmail("neduabi@pm.me");
         assertThat(user.getEmail()).isEqualTo("neduabi@pm.me");
     }
-
+    */
     /**
      * What is there is no registered e-mail? Should throw exception.
      */

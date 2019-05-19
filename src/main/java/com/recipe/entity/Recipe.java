@@ -15,9 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * This class is used to manage recipes.
@@ -25,44 +25,31 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@ToString
 @Entity
-@Table( name="recipes" )
+@Table(name = "recipes")
 public class Recipe {
 
 	@Id @GeneratedValue
 	private Long id;
 	
-	@Column( nullable=false )
+	@Column(nullable = false)
 	private String name;
 	
-	@Column( nullable=false )
+	@Column(nullable = false)
 	private String description;
     
     /**
      * SQL part of database-work.
      */
-    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-	@JoinTable( 
-		name = "recipe_ingredients", 
-		joinColumns = {@JoinColumn(name="recipe_id")}, 
-		inverseJoinColumns = {@JoinColumn(name="ingredient_id")}  
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+		name = "recipe_ingredients",
+		joinColumns = {@JoinColumn(name = "recipe_id")},
+		inverseJoinColumns = {@JoinColumn(name = "ingredient_id")}
 	)
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();
     
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Consumption> consumptions;
-
-    /**
-     * Get recipe as string with ID concatenated name and desc.
-     */
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            "}";
-    }
-
-	
 }

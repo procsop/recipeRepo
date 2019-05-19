@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table( name = "roles" )
+@Table(name = "roles")
 public class Role {
 
 	@Id
@@ -28,20 +27,16 @@ public class Role {
 	
 	private String role;
 	
-	@ManyToMany( mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles")
 	private Set<User> users = new HashSet<User>();
 		
-	public Role(){}
-	public Role(String role){
-		this.role=role;
+	public Role() { } 
+	public Role(String role) {
+		this.role = role;
 	}
-
-	/**
-	 * Get class as string included id and role.
-	 */
+	
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", role=" + role + "]";
 	}
-	
 }

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
  * Well functionated recipeservice to manage a repository.
  */
 @Service
-public class RecipeService{
-	
+public class RecipeService {
+
 	private RecipeRepository recipeRepository;
 
 	@Autowired
@@ -41,5 +41,4 @@ public class RecipeService{
 	public Recipe getRecipeById(Long selectedRecipeId) {
 		return recipeRepository.findById(selectedRecipeId);
 	}
-
 }

@@ -7,9 +7,9 @@ import java.text.ParseException;
 
 public interface UserService {
 	
-	public String registerUser(User user);
+	String registerUser(User user);
 
-	public User findByEmail(String email);
-	public Recipe recommendRecipe() throws NumberFormatException, ParseException;
-	public String addConsumption(Recipe selectedRecipe);
+	User findByEmail(String email);
+	Recipe recommendRecipe() throws NumberFormatException, ParseException;
+	String addConsumption(Recipe selectedRecipe);
 }

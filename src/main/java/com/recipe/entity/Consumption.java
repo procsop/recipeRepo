@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,11 +33,11 @@ public class Consumption {
 
     private Date date;
 
-    public Consumption(){
+    public Consumption() {
     }
-    public Consumption(User user, Recipe recipe, Date date){
-        this.user=user;
-        this.recipe=recipe;
-        this.date=date;
+    public Consumption(User user, Recipe recipe, Date date) {
+        this.user = user;
+        this.recipe = recipe;
+        this.date = date;
     }
 }

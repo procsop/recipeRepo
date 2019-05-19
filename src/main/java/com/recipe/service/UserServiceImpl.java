@@ -3,11 +3,7 @@ package com.recipe.service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
@@ -22,9 +18,6 @@ import com.recipe.repo.RecipeRepository;
 import com.recipe.repo.RoleRepository;
 import com.recipe.repo.UserRepository;
 
-import com.recipe.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,16 +28,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
 	private UserRepository userRepository;
 	private RoleRepository roleRepository;
 	private RecipeRepository recipeRepository;
-
+	
+	private final int PREV_DAYS = 3;
+	private final int RECOMMEND_PROT = 120;
+	private final int RECOMMEND_FAT = 80;
 	private final String USER_ROLE = "USER";
 
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, RecipeRepository recipeRepository) {
+	public UserServiceImpl(UserRepository userRepository,
+							RoleRepository roleRepository,
+							RecipeRepository recipeRepository) {
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
 		this.recipeRepository = recipeRepository;
@@ -56,7 +52,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}
-
 		return new UserDetailsImpl(user);
 	}
 
@@ -69,8 +64,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public String registerUser(User userToRegister) {
 		User userCheck = userRepository.findByEmail(userToRegister.getEmail());
 
-		if (userCheck != null)
+		if (userCheck != null) {
 			return "alreadyExists";
+		}
 
 		Role userRole = roleRepository.findByRole(USER_ROLE);
 		if (userRole != null) {
@@ -98,24 +94,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	@Override
 	public Recipe recommendRecipe() throws NumberFormatException, ParseException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User actualUser = ((UserDetailsImpl)principal).getUser();
+		User actualUser = ((UserDetailsImpl) principal).getUser();
 
-		int sumProtein=0;
-		int sumFat=0;
+		int sumProtein = 0;
+		int sumFat = 0;
 
 		Set<Consumption> consumptions = actualUser.getConsumptions();
-		for(Consumption consumption : consumptions){
-			if(getDateDiff(consumption) <= 3){
+		for (Consumption consumption : consumptions) {
+			if (getDateDiff(consumption) <= PREV_DAYS) {
 				Set<Ingredient> ingredients = consumption.getRecipe().getIngredients();
-				for(Ingredient ingredient : ingredients){
+				for (Ingredient ingredient : ingredients) {
 					sumProtein += Integer.parseInt(ingredient.getProtein());
 					sumFat += Integer.parseInt(ingredient.getFat());
 				}
 			}
 		}
 
-		double proteinRate = sumProtein / 3 / 120;
-		double fatRate = sumFat / 3 / 80;
+		double proteinRate = sumProtein / PREV_DAYS / RECOMMEND_PROT;
+		double fatRate = sumFat / PREV_DAYS / RECOMMEND_FAT;
 
 		TreeMap<String, Double> nutriRates = new TreeMap<String, Double>();
 		nutriRates.put("proteinRate", proteinRate);
@@ -129,14 +125,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return getRecommendRecipe(worstNutrition);
 	}
 
-	public Recipe getRecommendRecipe(String worstNutrition){
+	public Recipe getRecommendRecipe(String worstNutrition) {
 		List<Recipe> recipes = null;
 		switch (worstNutrition) {
 			case "fatRate":  recipes = recipeRepository.findAllByOrderByIngredientsFatDesc(); break;
 			case "proteinRate":  recipes = recipeRepository.findAllByOrderByIngredientsProteinDesc(); break;
+			default: break;
 		}
 		Recipe recommendedRecipe = recipes.get(0);
-		//System.out.println(recommendedRecipe.getName());
 		return recommendedRecipe;
 	}
 
@@ -149,5 +145,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 		return diff;
 	}
-
 }
