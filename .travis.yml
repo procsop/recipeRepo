@@ -11,13 +11,7 @@ before_deploy:
       - git tag $TRAVIS_TAG
 
 deploy:
-  provider: releases
+  provider: heroku
   api_key: 
-    secure: bfee34f23042472cf87d493a7c15282521bdd863
-  file: "target/*.jar"
+    secure: 6a02b45c-de3f-4f6b-9fa4-fb9685294712
   skip_cleanup: true
-  file_glob: true
-  overwrite: true
-  on:
-    tags: true
-    all_branches: true
